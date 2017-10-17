@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Artificial Intelligence Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/cayman.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  </head>
+  <body>
+    <section id="headerid" class="page-header">
+      <h1 class="project-name">Artificial Intelligence Project</h1>
+      <h2 class="project-tagline">Amanda Lee</h2>
+      <a href="http://ai.berkeley.edu/home.html" class="btn">Course Website</a>
+    
+    </section>
+    <script>
+        var pattern = GeoPattern.generate('Artificial Intelligence project page');
+        let header = document.getElementById("headerid");
+        header.style.backgroundImage = pattern.toDataUrl();
+        //$('#headerid').css('background-image', pattern.toDataUrl());
+    </script>
+    
+    <section class="main-content">
+      
+      <!-- index section -->
+      <h1>
+      <a id="Index" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index</h1>
+      <p>In this project, I followed the instruction and gradually implemented the required function in ray tracing. The main programming language is <strong>C++</strong>, and <strong>OPENGL</strong> and <strong>GLUT</strong> are utilized to simulate the scene and object.</p>
+
+    <ol >
+      <li><a href="#Search" class="btn-section">Search in Pacman</a></li>
+      <li><a href="#multi-agent" class="btn-section">Multi-Agent Pacman</a></li>
+      <li><a href="#Reinforcement" class="btn-section">Reinforcement Learning</a></li>
+      <li><a href="#Ghostbusters" class="btn-section">Ghostbusters</a></li>
+    </ol>
+    <!-- Search in Pacman -->
+      <h2>
+      <a id="Search" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Search in Pacman</h2>
+
+      <blockquote>
+    <p>For pacman, find the efficient way to collect food in the maze without ghost.</p>
+      </blockquote>
+      <ul>
+        <li>Python</li>
+        <li>Method: DFS, BFS, A*, and UCS.</li>
+        <li>Design effective heuristics function.</li>
+      </ul>
+      <a href="https://github.com/Roia2529/AI-project1" class="btn-section">Source code on Github</a>
+
+      <iframe src="https://drive.google.com/file/d/0B_YxCw8bY35SX1BfRXYtaHk3cVU/preview" width="640" height="480"></iframe>
+    <!-- end Search in Pacman --> 
+
+    <!-- Multi-Agent Pacman -->
+      <h2>
+      <a id="multi-agent" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi-Agent Pacman</h2>
+
+      <blockquote>
+      <p>Allow pacman to collect all food without being eaten by ghost.</p>
+      </blockquote>
+      <ul>
+        <li>Python</li>
+        <li>Decision making strategy: Minimax, Alpha-Beta Pruning, and Expectimax.</li>
+      </ul>
+      <a href="https://github.com/Roia2529/AI-project2" class="btn-section">Source code on Github</a>
+      <iframe src="https://drive.google.com/file/d/0B_YxCw8bY35Sakx6Z0hkZ1FaNU0/preview" width="640" height="480"></iframe>
+
+    <!-- end Multi-Agent Pacman --> 
+
+    <!-- Reinforcement Learning -->
+      <h2>
+      <a id="Reinforcement" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reinforcement Learning</h2>
+
+      <p>Train pacman by real interaction experience, and in the end test the stability of the learning result.</p>
+      </blockquote>
+      <ul>
+        <li>Python</li>
+        <li>Method: Markov decision processes, Q-Learning, value iteration, and Approximate Q-Learning.</li>
+      </ul>
+
+      <a href="https://github.com/Roia2529/AI-project3" class="btn-section">Source code on Github</a>
+
+      <iframe src="https://drive.google.com/file/d/0B_YxCw8bY35ScnQ4eDJFQnQzMjg/preview" width="640" height="480"></iframe>
+
+    <!-- end Reflection --> 
+
+     <!-- Ghostbusters -->
+      <h2>
+      <a id="Ghostbusters" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ghostbusters</h2>
+
+      <p>Design Pacman agents that use sensors to locate and eat invisible ghosts.</p>
+      </blockquote>
+      <ul>
+        <li>Python</li>
+        <li>Method: Particle Filter</li>
+      </ul>
+
+      <a href="https://github.com/Roia2529/AI-project4" class="btn-section">Source code on Github</a>
+
+      <iframe src="https://drive.google.com/file/d/0B_YxCw8bY35SdnR5MFFKRUxfNjQ/preview" width="640" height="480"></iframe>
+
+    <!-- end Ghostbusters --> 
+
+    <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Roia2529/Roia2529.github.io">Artificial Intelligence Project</a> is maintained by <a href="https://github.com/Roia2529">Amanda Lee</a>.</span>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+
+    </section>
+
+  </body>
+</html>
