@@ -9,6 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/cayman.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+    <script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
   </head>
   <body>
     <section id="headerbackground" class="page-header">
@@ -35,7 +36,7 @@
       <li><a href="#motive" >Motivation</a></li>
       <li><a href="#data">Data we explored</a></li>
       <li><a href="#keyidea" >Key ideas in this project</a></li>
-      <li><a href="#analysis" >Analysis</a></li>
+      <li><a href="#Analysis" >Analysis</a></li>
       <li><a href="#conclusion" >Conclusion</a></li>
       <li><a href="#Appendix" >Appendix</a></li>
     </ol>
@@ -75,7 +76,7 @@
         <li>To get better linear regression models, we separate hospitals into five groups based on their locations: west, midwest, northeast, southwest and southeast. We design the following algorithm:<br>
         <dl>
         <dt>Step 1:</dt>
-          <dd>Initialize 5 linear models corresponding to 5 region groups. <a onclick=""> See Section 4.1 for details.</a>
+          <dd>Initialize 5 linear models corresponding to 5 region groups.
           </dd>
         <dt>Step 2:</dt>  
           <dd>For each state, find the closest model among the models generated in Step 1. Then put each state into the group that corresponds to its closest model. A model is the closest if the sum of L2 distance of all hospital points in that state to the model is minimized.</dd>
@@ -93,11 +94,11 @@
 
     <!-- Analysis -->
       <h1>
-      <a id="Reflection" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Analysis</h1>
+      <a id="Analysis" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Analysis</h1>
 
       <p>We used the hospital data in two ways:</p><br>
       <ol>
-        <li>We applied the least squares method to hospital charges versus poverty rates. The result is shown in <a onclick="smoothlink('figure2')"> Figure 2</a>. After the poverty rate is updated, the linear regression result is improved. In <a onclick="smoothlink('figure3')">Figure 3</a>, we get a better linear regression. The mean squared error dropped from 34.06 to 21.47.<br>
+        <li>&emsp;We applied the least squares method to hospital charges versus poverty rates. The result is shown in <a onclick="smoothlink('figure2')"> Figure 2</a>. After the poverty rate is updated, the linear regression result is improved. In <a onclick="smoothlink('figure3')">Figure 3</a>, we get a better linear regression. The mean squared error dropped from 34.06 to 21.47.<br>
       <table >
       <thead>
       </thead>
@@ -116,8 +117,8 @@
       </tbody>
       </table>
       <br>
-        &emsp;To further improve the linear regression results, we divide the states into five groups, according to Figure 4. By the least squares method, we apply linear regression to each region (see Figure 5 to Figure 9 for results). In most regions, there exists negative correlation between hospital charges and weighted poverty rates. However, in the prosperous western region, the poverty rates are mostly lower than 20%, and there are many expensive hospitals whose charge levels are higher than 3. As a result, it is hard to find the relation between weighted poverty rates and hospital charge levels, as shown in Figure 10.
-        </li>
+        &emsp;To further improve the linear regression results, we divide the states into five groups, according to Figure 4. By the least squares method, we apply linear regression to each region (see <a onclick="smoothlink('figure5')">Figure 5 to Figure 9</a> for results). In most regions, there exists negative correlation between hospital charges and weighted poverty rates. However, in the prosperous western region, the poverty rates are mostly lower than 20%, and there are many expensive hospitals whose charge levels are higher than 3. As a result, it is hard to find the relation between weighted poverty rates and hospital charge levels, as shown in <a onclick="smoothlink('figure10')">Figure 10 </a>.
+        
         <figure>
       <img id="figure4" src="figure/datamining/five_region.jpg" alt="" style="max-width:100%;">
         <figcaption>Figure 4: Group distribution</figcaption>
@@ -125,32 +126,141 @@
 
       <table>
       <thead>
-      <tr>
-      <th>Input</th>
-      <th>Output</th>
-      </tr>
       </thead>
       <tbody>
       <tr>
       <td><figure>
-      <img id="figure4" src="figure/datamining/five_region.jpg" alt="" style="max-width:100%;">
-        <figcaption>Figure 4: Group distribution</figcaption>
+      <img id="figure5" src="figure/datamining/Midwest.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 5: Linear regression result in the midwest</figcaption>
       </figure></td>
 
       <td><figure>
-      <img id="figure5" src="figure/datamining/wtdPoverty_axis.png" alt="" style="max-width:100%;">
-        <figcaption>Figure 3: Hospital charges v.s. The weighted poverty rates</figcaption>
+      <img id="figure6" src="figure/datamining/West.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 6: Linear regression result in the west</figcaption>
+      </figure></td>
+
+      </tr>
+      <tr>
+      <td><figure>
+      <img id="figure7" src="figure/datamining/southwest.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 7: Linear regression result in the southwest</figcaption>
+      </figure></td>
+
+      <td><figure>
+      <img id="figure8" src="figure/datamining/Southeast.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 8: Linear regression result in the southeast</figcaption>
+      </figure></td>
+      </tr>
+      <tr>
+        <td><figure>
+      <img id="figure9" src="figure/datamining/Northeast.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 9: Linear regression result in the northeast</figcaption>
+      </figure></td>
+      </tr>
+      </tbody>
+      </table>
+      <p>
+      &emsp;Once we have linear regression models for 5 groups based on locations only, one question we can ask ourselves is: is this the best way to group states? To answer this question, as described in Section 3, we apply the 5-means clustering to obtain 5 ”best fit” linear models. The clustering results are shown in <a onclick="smoothlink('figure11')">Figure 11</a>. The total error drops from 203.4 to 181.3 after the 5-means clustering.
+      </p>
+      <p>
+      &emsp;<a onclick="smoothlink('figure12')">Figure 12 to 16</a> show the linear regression model for each group. Based on these results, it seems that states in each group share some common properties. For example, states in group 3 generally have higher poverty rates, and the correlation between hospital charges and poverty rates is the strongest of all groups. In contrast, the poverty rates in group 4 are mostly between 8% and 14%, while the correlation is close to none. To conclude, in prosperous areas, the correlation is not obvious; in other areas, we do observe negative correlations.</p>
+
+      </li>
+      <figure>
+      <img id="figure10" src="figure/datamining/CA.png" alt="" style="max-width:80%;">
+        <figcaption>Figure 10: Hospital charge levels and the poverty levels in CA</figcaption>
+      </figure>
+      <figure>
+      <img id="figure11" src="figure/datamining/map_5clusters.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 11: Clustering Result</figcaption>
+      </figure>
+      
+      <!-- figure 12-16 table -->
+      <table>
+      <thead>
+      </thead>
+      <tbody>
+      <tr>
+      <td><figure>
+      <img id="figure12" src="figure/datamining/group_1.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 12:<br> Linear regression of group 1</figcaption>
+      </figure></td>
+
+      <td><figure>
+      <img  src="figure/datamining/group_2.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 13: <br>Linear regression of group 2</figcaption>
+      </figure></td>
+
+      </tr>
+      <tr>
+      <td><figure>
+      <img src="figure/datamining/group_3.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 14:<br> Linear regression of group 3</figcaption>
+      </figure></td>
+
+      <td><figure>
+      <img src="figure/datamining/group_4.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 15: <br>Linear regression of group 4</figcaption>
+      </figure></td>
+      </tr>
+      <tr>
+        <td><figure>
+      <img src="figure/datamining/group_5.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 16: <br>Linear regression of group 5</figcaption>
       </figure></td>
       </tr>
       </tbody>
       </table>
 
-        <li></li>
+      <br>
+
+        <li>
+        <p>&emsp;We picked the 5 most common DRGs (194, 292, 392, 641 and 690) and hospitals that provide service in all these DRGs. To investigate the correlation of hospital charges and poverty levels, we applied the least squares method, obtaining the best fit line with an error of 289.76. For a comparison, when we used the weighted poverty rates, the error decreased to 225.77. We also tried the ridge regression method, but the results were similar to those of the least squares.</p>
+        
+        <p>&emsp;We note that the line from the least squares is <div lang="latex">l1 : 0.2415x_1-0.1403x_2+0.0536x_3- 0.2108x_4-0.0504x_5=16.8473 </div><br> when we use the weighted poverty rates. However, it is easy to find out that the hospital charges for each DRG are negatively correlated to the weighted poverty rates. We combine the 5 least squares results that correspond to each DRG, and obtain the line
+        <br><br> 
+        <div lang="latex">l2 : −0.00262x_1-0.00726x_2-0.0076x_3-0.01136x_4-0.00844x_5= 16.83664.</div> </p>
+        <p>The corresponding error is 232.78. So l1 and l2 fit the data with similar errors. There are two possible reasons for that. One is that neither l1 nor l2 fits the data very well. The other is that hospital charges within the 5 DRGs are correlated. In fact, it is easy to check that they are all positively correlated.
+        </p>
+        </li>
       </ol>
     <!-- end Analysis --> 
 
+    <!-- conclusion-->
+    <h1>
+      <a id="conclusion" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h1>
+
+      <p>
+        &emsp;There is negative correlation between hospital charges and local poverty rates, which makes hospital costs in poor areas lower than in rich areas. The weighted poverty rate increases the correlation. However, the data is more spread out than we thought, and the correlation is not as strong as we expected. It is possible that there are other important factors affecting hospital charges that are not considered in our study. It could be a policy issue.
+    </p>
+    <p>
+      &emsp;Actually, in the beginning, our goal was to find whether there was a correlation between average family income and hospital charges. However, we could not find data on average household income in each county. We guess it is harmful to make these data public since it may cause discrimination and is possible to affect the safety of prosperous areas. The previous class about ethics also made us reconsider how to present our results. We had planned to point out hospitals near areas with high poverty rates whose charges are high. However, after that class, we decided not to do this.
+    </p>
+    <p>
+      &emsp;Besides, we learned that it is not easy to define whether one data point is noise or not. Originally, we had planned to remove outliers after linear regression. However, the advice we got was that we should not remove any data point even though it is far away from the model unless we have strong reasons to do so. This is confusing at first but in the end we understand the importance of every data point. That is to say, if data points are far away from the model, we can not simply say that they are noise or remove them. What we have to do is to analyze whether it indicates other characteristics.
+    </p>
+    <p>
+      &emsp;We also find a paper, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4617932/">Inpatient Hospital Charge Variability of U.S. Hospitals</a>, whose conclusion is similiar to us. In this paper, it presents that hospitals price- setting strategies associate with uninsured status, which has positive correlation to poverty rate.
+    </p>
+    <!-- end of conclusion-->
+    <!-- Appendix-->
+    <h1>
+      <a id="Appendix" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Appendix</h1>
+
+    <ol>
+      <li>A provider level summary of Inpatient Prospective Payment System (IPPS)
+      discharges, average charges and average Medicare payments for the Top 100
+      Diagnosis-Related Groups (DRG). <a href="https://data.cms.gov/Medicare/Inpatient-Prospective-Payment-System-IPPS-Provider/ 97k6-zzx3">link</a></li>
+      <li>Data on poverty levels: <a href="http://www.census.gov/did/www/saipe/data/model/tables.html">link</a></li>
+      <li>Finding longitude and latitude for address: <a href="https://www.doogal.co.uk/BatchGeocoding.php">link</a></li>
+      <li>Finding counties for addresses that cannot be found by R packages: <a href="https://www.mapdevelopers.com/what-county-am-i-in.php">link</a></li>
+      <li>Inpatient Hospital Charge Variability of U.S. Hospitals: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4617932/">link</a></li>
+    </ol>  
+    <!-- end of Appendix--> 
+
+
     <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/Roia2529/Roia2529.github.io">Ray Tracing Project</a> is maintained by <a href="https://github.com/Roia2529">Amanda Lee</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/Roia2529/Roia2529.github.io">Correlation between hospital charges and local poverty rates</a> is maintained by <a href="https://github.com/Roia2529">Amanda Lee</a>.</span>
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
       </footer>
 
