@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Correlation between hospital charges and local poverty rates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/cayman.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  </head>
+  <body>
+    <section id="headerbackground" class="page-header">
+      <h1 class="project-name">Correlation between hospital charges and local poverty rates</h1>
+      <h2 class="project-tagline">Data Mining Project, University of Utah</h2>
+      <h2 class="project-tagline">Amanda Lee, Chen Yang, Yanyan Zhang</h2>
+      <a href="https://github.com/Roia2529/DM-Project" class="btn">Source Code</a>
+    </section>
+    <script type="application/javascript" src="js/script.js"></script>
+    <!--
+    <script>
+        var pattern = GeoPattern.generate('Data Mining Project');
+        let header = document.getElementById("headerid");
+        header.style.backgroundImage = pattern.toDataUrl();
+    </script>
+    -->
+    
+    <section class="main-content">
+      <!-- Index -->
+      <h1>
+      <a id="index" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index</h1>
+
+      <ol >
+      <li><a href="#motive" >Motivation</a></li>
+      <li><a href="#data">Data we explored</a></li>
+      <li><a href="#keyidea" >Key ideas in this project</a></li>
+      <li><a href="#analysis" >Analysis</a></li>
+      <li><a href="#conclusion" >Conclusion</a></li>
+      <li><a href="#Appendix" >Appendix</a></li>
+    </ol>
+
+      <!-- Motivation -->
+      <h1>
+      <a id="motive" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h1>
+      <p>&emsp;In general, restaurant prices are usually positively related to the local average household income. Our question is: Could we also observe similar phenomenon when it comes to hospital charges and local poverty rates? Namely, does a hospital arrange its charges according to its location? We utilize the Inpatient Prospective Payment System (IPPS) Provider Summary and poverty rate statistical data to build a model to explore the relationship between hospital charges and local poverty rates.</p>
+    <!-- end Motivation --> 
+      
+    <!-- data -->
+      <h1>
+      <a id="data" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data we explored</h1>
+
+      <p>&emsp;See Appendix for the sources of the hospital data and the poverty rate data. Note that both are data from year 2011. We have the original data about hospitals, including DRG(Diagnosis-Related Group), hospital addresses, zip codes and charges. There are 163,065 records in the file, including 3,337 hospitals and the top 100 DRGs. An example of records in the data is shown in <a id="flink01" onclick="smoothlink('figure1')">Figure 1</a>. We processed the hospital data in two different ways.</p>
+      <figure>
+      <img id="figure1" src="figure/datamining/DRG_each_hospital.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 1: DRGs the hospital 10001 provides service about</figcaption>
+      </figure>
+      
+
+      <ol>
+        <li>For each hospital, we combine charges for all DRGs to generate a reasonable number representing its charge level. To do this, we first find the average charge for each DRG over the whole US. Then we divide the charge of the hospital by the average charge so that we have a charge level for each DRG and each hospital. This charge level can tell us how expensive the service provided by each hospital is for each DRG. Second we calculate the average level among all the DRGs one hospital provides service for. This average level is what we use to represent a hospital’s charge level.</li><br>
+        <li>We pick the hospital charges for 5 DRGs for analysis. First we find the top 5 most common DRGs (194, 690, 292, 392, 641) out of 100 DRGs. Second, since not all hospitals provide service for these 5 DRGs, for a fair comparison in our analysis we only include hospitals that provide service for all 5 DRGs. There are 2,664 such hospitals out of total 3,337 hospitals.
+        </li>
+      </ol>
+      <p>&emsp;Another important set of data is the poverty rate data by county. To combine the hospital data and the poverty data, we find the latitude and longitude for each hospital with the help of a website (see 3) in Appendix A), by which we find the county for the hospital by using R packages. Then we combine the two sets of data by matching counties. Moreover, we add a new attribute the weighted poverty rate. We will explain what it is and how to generate it in the next section.</p>
+    <!-- end data --> 
+
+    <!-- Key Idea -->
+      <h1>
+      <a id="keyidea" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Key ideas</h1>
+
+      <ul>
+        <li>In the data collection stage, we found the local poverty rates corresponding to the hospital locations. However, this is not reasonable if a hospital is close to the boundary of its county and in fact closer to the centers of some other counties. For this reason, we update the original poverty rate corresponding to hospitals by using weighted poverty rates. <br><br>To generate the weighted poverty rate for a hospital, we take into consideration all the counties that are within 50 miles of the hospital. The weight of the poverty rates of the neighboring counties is based on the distance between each county center and the hospital. More precisely, the closer the county center is to the hospital, the higher weight its poverty rate has in the weighted poverty rate.</li><br>
+
+        <li>To get better linear regression models, we separate hospitals into five groups based on their locations: west, midwest, northeast, southwest and southeast. We design the following algorithm:<br>
+        <dl>
+        <dt>Step 1:</dt>
+          <dd>Initialize 5 linear models corresponding to 5 region groups. <a onclick=""> See Section 4.1 for details.</a>
+          </dd>
+        <dt>Step 2:</dt>  
+          <dd>For each state, find the closest model among the models generated in Step 1. Then put each state into the group that corresponds to its closest model. A model is the closest if the sum of L2 distance of all hospital points in that state to the model is minimized.</dd>
+        <dt>Step 3:</dt>   
+          <dd>Apply the least squares method to each group and then update the coefficients in the linear equations.</dd>
+        <dt>Step 4:</dt>   
+          <dd>Repeat Step 2 and 3 until the clustering groups stay the same.</dd>
+        </ol><br>
+          By this algorithm, we find 5 best ’fit’ least squares models.
+        </li>
+      </ul>
+
+
+    <!-- end Key Idea --> 
+
+    <!-- Analysis -->
+      <h1>
+      <a id="Reflection" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Analysis</h1>
+
+      <p>We used the hospital data in two ways:</p><br>
+      <ol>
+        <li>We applied the least squares method to hospital charges versus poverty rates. The result is shown in <a onclick="smoothlink('figure2')"> Figure 2</a>. After the poverty rate is updated, the linear regression result is improved. In <a onclick="smoothlink('figure3')">Figure 3</a>, we get a better linear regression. The mean squared error dropped from 34.06 to 21.47.<br>
+      <table >
+      <thead>
+      </thead>
+      <tbody>
+      <tr >
+      <td style="border: 1px solid transparent"><figure>
+      <img id="figure2" src="figure/datamining/poverty_axis.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 2: Hospital charges v.s. The original poverty rates</figcaption>
+      </figure></td>
+
+      <td style="border: 1px solid transparent"><figure>
+      <img id="figure3" src="figure/datamining/wtdPoverty_axis.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 3: Hospital charges v.s. The weighted poverty rates</figcaption>
+      </figure></td>
+      </tr>
+      </tbody>
+      </table>
+      <br>
+        &emsp;To further improve the linear regression results, we divide the states into five groups, according to Figure 4. By the least squares method, we apply linear regression to each region (see Figure 5 to Figure 9 for results). In most regions, there exists negative correlation between hospital charges and weighted poverty rates. However, in the prosperous western region, the poverty rates are mostly lower than 20%, and there are many expensive hospitals whose charge levels are higher than 3. As a result, it is hard to find the relation between weighted poverty rates and hospital charge levels, as shown in Figure 10.
+        </li>
+        <figure>
+      <img id="figure4" src="figure/datamining/five_region.jpg" alt="" style="max-width:100%;">
+        <figcaption>Figure 4: Group distribution</figcaption>
+      </figure></td>
+
+      <table>
+      <thead>
+      <tr>
+      <th>Input</th>
+      <th>Output</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td><figure>
+      <img id="figure4" src="figure/datamining/five_region.jpg" alt="" style="max-width:100%;">
+        <figcaption>Figure 4: Group distribution</figcaption>
+      </figure></td>
+
+      <td><figure>
+      <img id="figure5" src="figure/datamining/wtdPoverty_axis.png" alt="" style="max-width:100%;">
+        <figcaption>Figure 3: Hospital charges v.s. The weighted poverty rates</figcaption>
+      </figure></td>
+      </tr>
+      </tbody>
+      </table>
+
+        <li></li>
+      </ol>
+    <!-- end Analysis --> 
+
+    <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Roia2529/Roia2529.github.io">Ray Tracing Project</a> is maintained by <a href="https://github.com/Roia2529">Amanda Lee</a>.</span>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+
+    </section>
+  
+  </body>
+</html>

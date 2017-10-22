@@ -256,6 +256,9 @@ a {
     margin: 1rem 0;
     background-color: #eff0f1;
     border: 0; }
+  .main-content figcaption {
+    color: darkblue;
+  }  
 
 .site-footer {
   padding-top: 2rem;
