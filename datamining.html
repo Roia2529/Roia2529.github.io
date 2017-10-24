@@ -19,13 +19,13 @@
       <a href="https://github.com/Roia2529/DM-Project" class="btn">Source Code</a>
     </section>
     <script type="application/javascript" src="js/script.js"></script>
-    <!--
+    
     <script>
         var pattern = GeoPattern.generate('Data Mining Project');
-        let header = document.getElementById("headerid");
+        let header = document.getElementById("headerbackground");
         header.style.backgroundImage = pattern.toDataUrl();
     </script>
-    -->
+  
     
     <section class="main-content">
       <!-- Index -->
@@ -33,12 +33,13 @@
       <a id="index" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index</h1>
 
       <ol >
-      <li><a href="#motive" >Motivation</a></li>
-      <li><a href="#data">Data we explored</a></li>
-      <li><a href="#keyidea" >Key ideas in this project</a></li>
-      <li><a href="#Analysis" >Analysis</a></li>
-      <li><a href="#conclusion" >Conclusion</a></li>
-      <li><a href="#Appendix" >Appendix</a></li>
+      <li><a onclick="smoothlink('motive')"    >Motivation</a></li>
+      <li><a onclick="smoothlink('data')"      >Data we explored</a></li>
+      <li><a onclick="smoothlink('keyidea')"   >Key ideas in this project</a></li>
+      <li><a onclick="smoothlink('Analysis')"  >Analysis</a></li>
+      <li><a onclick="smoothlink('conclusion')">Conclusion</a></li>
+      <li><a onclick="smoothlink('Appendix')"  >Appendix</a></li>
+      <!--href="#Appendix"--> 
     </ol>
 
       <!-- Motivation -->

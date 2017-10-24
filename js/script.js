@@ -1,8 +1,8 @@
 //script.js
 //
-var pattern = GeoPattern.generate('Data Mining Project');
-let header = document.getElementById("headerbackground");
-header.style.backgroundImage = pattern.toDataUrl();
+//var pattern = GeoPattern.generate('Data Mining Project');
+//let header = document.getElementById("headerbackground");
+//header.style.backgroundImage = pattern.toDataUrl();
 
 function smoothlink(id){
 	
