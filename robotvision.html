@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Implementation of Real-time Object Recognition System
+by Integrating SURF and BRISK
+for Home-Service Robot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/cayman.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+    <script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+  </head>
+  <body>
+    <section id="headerid" class="page-header">
+      <h1 class="project-name">Implementation of Real-time Object Recognition System
+by Integrating SURF and BRISK
+for Home-Service Robot</h1>
+      <h2 class="project-tagline">AIRobot Lab, National Cheng Kung University</h2>
+      <h2 class="project-tagline">Hsuan(Amanda) Lee</h2>
+      <a href="./index.html" class="btn">HomePage</a>
+      <a href="http://ieeexplore.ieee.org/document/6887948/" class="btn">2014 ICSSE Paper</a>
+    </section>
+    <!-- -->
+    <script type="application/javascript" src="js/script.js"></script>
+    
+    <script>
+        var pattern = GeoPattern.generate('Home Service Robot');
+        let header = document.getElementById("headerid");
+        header.style.backgroundImage = pattern.toDataUrl();
+    </script>
+    
+    
+    <section class="main-content">
+      <!-- Index -->
+      <h1>
+      <a id="index" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index</h1>
+
+      <ol >
+      <li><a href="#overview" >Overview</a></li>
+      <li><a onclick="smoothlink('robot')">Hardware of Home Service Robot</a></li>
+      <li><a onclick="smoothlink('obsys')" >Object Recognization System</a></li>
+      <!--<li><a onclick="smoothlink('opsys')" >Object Perception System</a></li>-->
+      <li><a onclick="smoothlink('exp')" >Experiment Results</a></li>
+      <li><a onclick="smoothlink('conclusion')" >Future Work</a></li>
+      <li><a href="#Appendix" >Appendix</a></li>
+    </ol>
+
+      <!-- Overview -->
+      <h1>
+      <a id="overview" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h1>
+      <p>&emsp;This thesis mainly discusses the design and implementation of object recognition and visual perception for home service robot. Nowadays, researches for robot are toward the implementation of serving people in home environment, such as ASIMO, PR2 , and ISSAC. These robots can not only interact with family members but also help people to do household affairs.</p>
+
+      <p>&emsp;Unlike outdoor environment, there are many items in house, such as daily supplies and foods. This is a big problem if we want the robot to supply services which is related to these items. To solve this, we construct the visual perception system and the real-time object recognition system. With these capabilities, the home-service robot is able to distinguish different objects and search for specific item. As a result, it can do further things such as throwing away the garbage or delivering the correct medicine to the master, and these functions really enhance the home-service robot.</p>
+    <!-- end Overview --> 
+      
+    <!-- Hardware -->
+      <h1>
+      <a id="robot" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware</h1>
+
+      <p>&emsp;All the systems mentioned in this research is implemented in a home service robot - May - which is designed by aiRobot lab. <a id="flink01" onclick="smoothlink('figure1')">Fig. 1</a> shows its appearence, and <a id="flink02" onclick="smoothlink('figure2')">fig. 2</a> is the hardware architecture.</p>
+      <figure>
+      <img id="figure1" src="figure/robot/May2.png" alt="" style="max-width:70%;">
+        <figcaption>Figure 1: The appearance of our home-service robot, May.</figcaption>
+      </figure>
+      <figure>
+      <img id="figure2" src="figure/robot/hwarch2.png" alt="" style="max-width:80%">
+        <figcaption>Figure 2: Hardware architecture.</figcaption>
+      </figure>
+
+      <p>&emsp;The hardware of vision system includes three partitions: computer, graphic card, and Kinect, as shown in <a id="flink03" onclick="smoothlink('figure3')">Fig. 3</a>. Kinect consists of a depth sensor to detect the distance between the robot and the objects in front of it. All information received by camera is processed by one computer.</p>
+      <figure>
+      <img id="figure3" src="figure/robot/hwvs2.png" style="max-width:60%">
+        <figcaption>Figure 3: Hardware of vision system.</figcaption>
+      </figure>
+    <!-- end Hardware --> 
+
+    <!-- obsys-->
+      <h1>
+      <a id="obsys" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Recognization System</h1>
+      <p>&emsp;An object recognition system contains three steps: detection, description, and matching. For keypoint detection, we use CUDA SURF as the detector. First, we introduce the algorithm of SURF detector, which is more repeatable than FAST, and more efficient than SIFT. After locating the interest point, we use BRISK as our descriptor. Unlike those popular descriptor—SIFT and SURF—generating a vector of floating-points values for each keypoint, BRISK use binary string to store the feature. Calculating the Hamming distance of binary string is much faster than computing the usual Euclidean distance of floating numbers. In the end, we compare our system with other famous approaches. The flow chart of our object recognition system is shown in <a id="flink04" onclick="smoothlink('figure4')">Fig. 4</a>.</p>
+     
+     <figure>
+      <img id="figure4" src="figure/robot/flowchart.png" style="max-width:100%">
+        <figcaption>Figure 4: Flow chart of object recognition system.</figcaption>
+      </figure>
+      <figure>
+      <img id="figure5" src="figure/robot/compare.png" style="max-width:70%">
+        <figcaption>Figure 5: Detecting time with different resolution.</figcaption>
+      </figure>
+
+       <p>&emsp;SURF detector provide us repeatability and accuracy. SIFT is also famous for its stability, but comparing to SURF, it takes more time to calculate keypoints, as the comparison shown in <a id="flink05" onclick="smoothlink('figure5')">Fig. 5</a>.</p>
+       
+
+      <p>&emsp;Pascal Fua proposed a novel method: Binary Robust Independent Elementary Features, called BRIEF, in 2008. It has demonstrated that it is very effective to use the binary string for describing the feature of an interest point. BRIEF descriptor compares the intensity of many pair of points around a keypoint and then generates the binary string directly without the procedure of computing the intensity histogram which is a normal step in other state-of-the-art algorithms, for example, SIFT.</p>
+
+      <p>&emsp;However, there are still some flaws in BRIEF—unreliability on image transformation and in-plane rotation. In our system, we choose BRISK. This descriptor dramatically reduces the time on calculating the feature description. Besides, it saves the memory consumption for each keypoint.</p>
+
+      <p>BRISK uses a uniform pattern to sample the surrounding of one keypoint. <a id="flink06" onclick="smoothlink('figure6')">Fig. 6</a> shows the sampling pattern while scale size k equal to 1. The small blue circles are the location of the chosen samples; the red dashed circles outside each blue circle with radius σ mean that the point is smoothed by Gaussian filter with the standard deviation σ. In the end, the feature description generate a binary string to represent the keypoint.</p>
+
+      <p>Comparing two binary strings is easy and time-saving. <a id="table01" onclick="smoothlink('table01')">Table 1</a> illustrate the matching time for 1000 keypoints in <a id="flink07" onclick="smoothlink('figure7')">Fig. 7</a> with different decriptors.</p>
+
+      <table >
+      <thead>
+      </thead>
+      <tbody>
+      <tr >
+      <td style="border: 1px solid transparent"><figure>
+      <img id="figure6" src="figure/robot/pattern.png" style="max-width:100%">
+      </figure></td>
+
+      <td style="border: 1px solid transparent"><figure>
+      <img id="table01" src="figure/robot/descriptor.png" style="max-width:100%">
+      </figure></td>
+      </tr>
+      <tr>
+      <td style="border: 1px solid transparent">
+      <figcaption>Figure 6: The BRISK sampling pattern with scale k = 1.</figcaption>  
+      </td> 
+       <td style="border: 1px solid transparent">
+      <figcaption>Table 1: Matching time for two images.</figcaption> 
+      </td> 
+      </tr>
+      </tbody>
+      </table>
+
+      <figure>
+      <img id="figure7" src="figure/robot/matching.png" width="600px">
+      <figcaption>Figure 7: Matching two sets of keypoints.</figcaption></figure></td>
+
+      <p>&emsp;To respond to the environment quickly, the home-service robot needs to have a real-time visual system, and the above solution is not fast enough. Hence, we use CUDA SURF to reduce the calculation time of detecting the interest points. CUDA makes it possible for developers to access to the virtual instruction set in NVIDIA GPUs, and it provides physical parallelism across the broad spectrum. As the experiment result in <a id="flink08" onclick="smoothlink('figure8')">Fig. 8</a>, CUDA SURF dramatically reduce the calculation time.</p>
+
+      <figure>
+      <img id="figure8" src="figure/robot/cuda.png" width="600px">
+      <figcaption>Figure 8: Speed of CPU-SURF and CUDA SURF.</figcaption></figure></td>
+
+    <!-- end obsys --> 
+
+    <!-- opsys -->
+      <h1>
+      <a id="exp" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Experiment Results</h1>
+      <p>&emsp;The robustness and effectiveness of the object recognition system have been proven in both the laboratory and the international competition. Our home service robot -May- can perform many task with the assistances from visual systems, such as searching an appointed drink for the master or throwing out garbage. Here are videos illustrating these tasks. </p>
+
+      <ul>
+        <li>
+          <p>To search object in simple environment:</p>
+      <iframe src="https://drive.google.com/file/d/0B_YxCw8bY35SSTRMTHlrYWQ1SUk/preview" width="640" height="480"></iframe>
+        </li>
+        <li>
+        <p>To search object in complex environment:</p>
+      <iframe src="https://drive.google.com/file/d/0B_YxCw8bY35SQ2M4dmYzQ29lYTA/preview" width="640" height="480" style="float:middle"></iframe>
+        </li>
+        <li>
+        <p>Cleaning house:</p>
+        <iframe src="https://drive.google.com/file/d/0B_YxCw8bY35SNVdicGVmWGlFcTQ/preview" width="640" height="480"></iframe>
+        </li>
+      </ul>
+
+
+    <!-- end Analysis --> 
+
+    <!-- conclusion-->
+    <h1>
+      <a id="conclusion" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future Work</h1>
+
+    <p>
+      &emsp;There are still several problems unsolved in this thesis. The proposed object recognition system is not capable of identifying the items with blank appearance. There must be some patterns as the features on them in the proposed system. To solve this, one might adopt the 3D object recognition methods. However, such methods always cost a lot of memory and are time-consuming. It needs to take a trade-off between accuracy and efficiency. Besides, CUDA SURF can only be performed on graphic card made by Nvidia. We should search for another method to complete the parallelization so that this system can be implemented on any platforms.</p>
+
+    <!-- end of conclusion-->
+    <!-- Appendix-->
+    <h1>
+      <a id="Appendix" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Appendix</h1>
+
+    <ol>
+      <li>H. Bay, T. Tuytelaars, and L. V. Gool, “SURF: Speeded up robust features,” in Proceedings of the European Conference on Computer Vision, pp. 404-417, 2006.</li>
+      <li>S. Leutenegger, M. Chli, and R. Siegwart, “BRISK: Binary robust invariant scalable keypoints,” in Proceedings of the IEEE International Conference on Computer Vision, pp. 2548–2555, 2011.</li>
+
+    </ol>  
+    <!-- end of Appendix--> 
+
+
+    <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Roia2529/Roia2529.github.io">Implementation of Real-time Object Recognition System by Integrating SURF and BRISK
+          for Home-Service Robot</a> is maintained by <a href="https://github.com/Roia2529">Amanda Lee</a>.</span>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+
+    </section>
+  
+  </body>
+</html>
