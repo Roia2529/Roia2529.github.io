@@ -1,0 +1,74 @@
+
+body {
+    font-family: Lato;
+}
+
+h1 {
+    font-family: "Arvo";
+    font-size:35px;
+    color: #464646;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 20px;
+}
+
+h2{
+    -webkit-margin-before: 5px;
+    -webkit-margin-after:  5px;
+}
+
+h3{
+    text-anchor:middle;
+    font-size: 32px;
+}
+
+.tile {
+    stroke: #FFF;
+    stroke-width: 4;
+}
+
+.yeartext, .tilestext, .brushtext{
+    text-anchor:middle;
+    font-size: 24px;
+    fill: #565656;
+    stroke-width: 0.1px;
+    /*stroke: #e5e5e5;*/
+}
+
+.content {
+    display: inline-block;
+    width: 60%;
+}
+
+.sideBar {
+    display: inline-block;
+    width: 40%;
+    float:left;
+}
+
+.fullView{
+    display: inline-block;
+    width: 100%;
+}
+
+.yearChart{
+    stroke: #FFF;
+}
+
+.arc path{
+    stroke: #FFF;
+}
+
+.arc text{
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
+table{
+    margin-left: 40px;
+    border: 1px solid black;
+    width: 50%;
+}
+th, td {
+    border: 1px solid black;
+    text-align: right;
+}

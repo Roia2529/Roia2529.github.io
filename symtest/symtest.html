@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sort log data</title>
+    <link rel="stylesheet" href="public/css/style.css"/>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <!-- <script type="text/javascript" src="bower_components/d3/d3.js"></script> -->
+    <script type="text/javascript" src="bower_components/d3-tip/index.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.js"></script>
+
+</head>
+
+<body>
+
+<h1>Sorting Log data</h1>
+<div id="loadfile" class="view">
+<h3>Please select one log data</h3>
+<input type="file" id="myFile">
+</div>
+
+
+<div id = "vsChart" class = "sideBar">
+    <h3>Table</h3>
+    <table id="viewTable" class = "">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Page Views</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+        </tbody>
+    </table>
+</div>
+
+<div id = "pieChart" >
+    <h3>Pie Chart</h3>
+</div>
+
+<script type="application/javascript" src="public/js/TableChart.js"></script>
+<script type="application/javascript" src="public/js/pieChart.js"></script>
+<!--
+<script type="application/javascript" src="public/js/electoralVoteChart.js"></script>
+<script type="application/javascript" src="public/js/votePercentageChart.js"></script>
+<script type="application/javascript" src="public/js/shiftChart.js"></script>
+<script type="application/javascript" src="public/js/vsChart.js"></script>
+-->
+<script type="application/javascript" src="public/js/script.js">
+
+</script>
+</body>
+</html>
