@@ -2,13 +2,8 @@
 class TableChart {
 
     /**
-     * Constructor for the Year Chart
-     *
-     * @param electoralVoteChart instance of ElectoralVoteChart
-     * @param tileChart instance of TileChart
-     * @param votePercentageChart instance of Vote Percentage Chart
-     * @param electionInfo instance of ElectionInfo
-     * @param electionWinners data corresponding to the winning parties over mutiple election years
+     * TableChart constructor
+     * @param  {PieChart} pieChart object for displaying pie chart
      */
     constructor (pieChart) {
         this.pChart= pieChart;
@@ -22,9 +17,6 @@ class TableChart {
             this.selectFile.addEventListener('change', (e)=>{
                 let fileTobeRead = e.target.files[0];
 
-                //let self = this;
-                //console.log(self.name);
-
                 let fileReader = new FileReader(); 
                 fileReader.addEventListener("load",(e)=>{
 
@@ -32,16 +24,28 @@ class TableChart {
 
                 let lines = text.split(/[\r\n]+/g);
 
+                let header = lines[4].split(" ");
+
+                //Find index of user name
+                let userName_index;
+                for( var i=0 ; i< header.length; i++) {
+                    e = header[i];
+                    if(e=="cs-userdn"){
+                        userName_index = i-1;
+                        break;
+                    }
+                };
+
                  //Parse String
                  lines.forEach( (element,index)=> {
                      if(index>5){ 
                         let words = element.split(" ");
                         //console.log(words[6]);
-                        let value = this.map.get(words[6]);
+                        let value = this.map.get(words[userName_index]);
                         if(value == undefined)
-                            this.map.set(words[6],+1);
+                            this.map.set(words[userName_index],+1);
                         else
-                            this.map.set(words[6],value+1);
+                            this.map.set(words[userName_index],value+1);
                      }
                      
                  });
@@ -60,7 +64,8 @@ class TableChart {
     };
 
     /**
-     * Creates a chart with circles representing each election year, populates text content and other required elements for the Year Chart
+     * Update table content
+     * @return {[type]} [description]
      */
     update () {
 
@@ -109,8 +114,7 @@ class TableChart {
         }
         )
         
-        this.pChart.update(this.list);
-        //fileContents.innerText = lines[5]; 
+        this.pChart.update(this.list); 
     }
         
 

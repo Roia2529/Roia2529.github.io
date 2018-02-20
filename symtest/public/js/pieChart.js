@@ -2,8 +2,7 @@
 class PieChart {
 
     /**
-     * Initializes the svg elements required to lay the tiles
-     * and to populate the legend.
+     * initializa pie chart
      */
     constructor(){
 
@@ -24,9 +23,7 @@ class PieChart {
     };
 
     /**
-     * [update description]
-     * @param  {[type]} electionResult [description]
-     * @return {[type]}                [description]
+     * update pie chart with data
      */
     update (data){
 
