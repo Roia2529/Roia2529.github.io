@@ -51,7 +51,8 @@ class PieChart {
                         .data(pie(data));
 
             arc.exit().remove();
-
+            arc.selectAll('g').remove();
+            
             let arcg = arc.enter().append('g')
                        .attr('class','arc');
 

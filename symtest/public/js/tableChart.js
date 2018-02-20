@@ -9,7 +9,7 @@ class TableChart {
         this.pChart= pieChart;
         this.name = "sorting log";
         this.map = new Map();
-        this.list= [];
+        //this.list= [];
         let divyearChart = d3.select("#loadfile").classed("fullView", true);
         this.selectFile = document.getElementById('myFile');
         if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -35,6 +35,9 @@ class TableChart {
                         break;
                     }
                 };
+
+                //clear map
+                this.map.clear();
 
                  //Parse String
                  lines.forEach( (element,index)=> {
@@ -71,9 +74,10 @@ class TableChart {
 
         let fileContents = document.getElementById('vsChart');
 
+        let list = [];
         this.map.forEach( (value, key)=> {
             let name = key.charAt(0).toUpperCase()+key.slice(1);
-            this.list.push(
+            list.push(
             {
               "Username": name,
                "Page Views": value
@@ -81,7 +85,7 @@ class TableChart {
             );
         });
 
-        this.list.sort((a,b)=>{
+        list.sort((a,b)=>{
             if(a["Page Views"]!=b["Page Views"]){
 
                 return b["Page Views"]-a["Page Views"]; 
@@ -99,7 +103,7 @@ class TableChart {
         let tbody = document.getElementById('tablebody');
 
         tbody.innerHTML= '';
-        this.list.forEach( function(e){
+        list.forEach( function(e){
             let tr = document.createElement('tr');
         
             let tdName = document.createElement('td');
@@ -114,7 +118,7 @@ class TableChart {
         }
         )
         
-        this.pChart.update(this.list); 
+        this.pChart.update(list); 
     }
         
 
