@@ -21,8 +21,7 @@
     <!-- end bootstrap -->  
       
     <link rel="stylesheet" href="public/css/style.css"/>
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
 </head>
 
@@ -41,17 +40,17 @@
         <thead id="tablehead">
             <tr class="table-primary">
                 <th style="width:10%"><a href="#" ng-click="orderByField='userId'; reverseSort = !reverseSort">
-              userId <span ng-show="orderByField == 'userId'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+              userId <span ng-show="orderByField == 'userId'"><span ng-show="!reverseSort" class="fa fa-caret-down"></span><span ng-show="reverseSort" class="fa fa-caret-up"></span></span>
               </a></th>
                 <th style="width:10%"><a href="#" ng-click="orderByField='id'; reverseSort = !reverseSort">
-              id <span ng-show="orderByField == 'id'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+              id <span ng-show="orderByField == 'id'"><span ng-show="!reverseSort" class="fa fa-caret-down"></span><span ng-show="reverseSort" class="fa fa-caret-up"></span></span>
               </a></th>
                 <th style="width:30%"><a href="#" ng-click="orderByField='title'; reverseSort = !reverseSort">
-              title <span ng-show="orderByField == 'title'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+              title <span ng-show="orderByField == 'title'"><span ng-show="!reverseSort" class="fa fa-caret-down"></span><span ng-show="reverseSort" class="fa fa-caret-up"></span></span>
               </a></th>
                 <th>
                     <a href="#" ng-click="orderByField='body'; reverseSort = !reverseSort">
-              body <span ng-show="orderByField == 'body'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+              body <span ng-show="orderByField == 'body'"><span ng-show="!reverseSort" class="fa fa-caret-down"></span><span ng-show="reverseSort" class="fa fa-caret-up"></span></span>
               </a>
                 
                 </th>
