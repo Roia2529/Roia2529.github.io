@@ -70,5 +70,5 @@ table.tableHeader{
 }
 
 .table-scroll td {
-    height: 47px; // needed in order to keep rows from collapsing
+    height: 47px;
 }

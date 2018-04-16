@@ -30,22 +30,23 @@
 
 <h1>Review List</h1>
 
-<div id="loadfile" class="view col-md-2 container">
+<div id="loadfile" class="view col-md-1 container">
 </div>
 
 
 <div id = "vsChart" class = "col-md-10 container" ng-app="myApp" ng-controller="customersCtrl">
-    <h3>Table</h3>
+    <p class="font-weight-bold">New Data Link: <input type="text" ng-model="Name">
+    <input type="button" class = "btn btn-primary" value="send" ng-click="updateData()" /></p>
     <table id="viewTable" class = "table-scroll tableHeader table table-striped table-hover">
         <thead id="tablehead">
             <tr class="table-primary">
-                <th><a href="#" ng-click="orderByField='userId'; reverseSort = !reverseSort">
+                <th style="width:10%"><a href="#" ng-click="orderByField='userId'; reverseSort = !reverseSort">
               userId <span ng-show="orderByField == 'userId'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
               </a></th>
-                <th><a href="#" ng-click="orderByField='id'; reverseSort = !reverseSort">
+                <th style="width:10%"><a href="#" ng-click="orderByField='id'; reverseSort = !reverseSort">
               id <span ng-show="orderByField == 'id'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
               </a></th>
-                <th><a href="#" ng-click="orderByField='title'; reverseSort = !reverseSort">
+                <th style="width:30%"><a href="#" ng-click="orderByField='title'; reverseSort = !reverseSort">
               title <span ng-show="orderByField == 'title'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
               </a></th>
                 <th>
@@ -58,9 +59,9 @@
         </thead>
         <tbody id="tablebody">
             <tr ng-repeat="x in names|orderBy:orderByField:reverseSort">
-                <td>{{ x.userId }}</td>
-                <td>{{ x.id }}</td>
-                <td>{{ x.title }}</td>
+                <td style="width:10%">{{ x.userId }}</td>
+                <td style="width:10%">{{ x.id }}</td>
+                <td style="width:30%">{{ x.title }}</td>
                 <td>{{ x.body }}</td>
             </tr>
         </tbody>
