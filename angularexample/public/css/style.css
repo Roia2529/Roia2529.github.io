@@ -1,0 +1,74 @@
+
+body {
+    font-family: Lato;
+}
+
+h1 {
+    font-family: "Arvo";
+    font-size:35px;
+    font-style: italic;
+    color: #464646;
+    text-align: center;
+}
+
+h2{
+    -webkit-margin-before: 5px;
+    -webkit-margin-after:  5px;
+}
+
+h3{
+    text-anchor:middle;
+    font-size: 32px;
+}
+
+.content {
+    display: inline-block;
+    width: 60%;
+}
+
+.fullView{
+    display: inline-block;
+    width: 100%;
+}
+
+table.tableHeader{
+  margin-bottom: 0px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.tableHeader #tablehead{
+  width: 100%;
+  max-width: 100%;
+  border:2px solid #ccc;
+  font-size: 125%;
+}
+
+#tablehead th {
+    cursor:pointer;
+    background: #eee;
+}
+
+.table-scroll thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-scroll tbody {
+    max-height: 800px;
+    overflow-y: auto;
+    display: block;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-scroll tr {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table-scroll td {
+    height: 47px; // needed in order to keep rows from collapsing
+}

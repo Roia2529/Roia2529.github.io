@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sort data</title>
+
+    <!-- load Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <!-- End Angular -->
+
+    <!-- load JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- End JQuery -->
+
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!-- end bootstrap -->  
+      
+    <link rel="stylesheet" href="public/css/style.css"/>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.js"></script>
+
+</head>
+
+<body>
+
+<h1>Review List</h1>
+
+<div id="loadfile" class="view col-md-2 container">
+</div>
+
+
+<div id = "vsChart" class = "col-md-10 container" ng-app="myApp" ng-controller="customersCtrl">
+    <h3>Table</h3>
+    <table id="viewTable" class = "table-scroll tableHeader table table-striped table-hover">
+        <thead id="tablehead">
+            <tr class="table-primary">
+                <th><a href="#" ng-click="orderByField='userId'; reverseSort = !reverseSort">
+              userId <span ng-show="orderByField == 'userId'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+              </a></th>
+                <th><a href="#" ng-click="orderByField='id'; reverseSort = !reverseSort">
+              id <span ng-show="orderByField == 'id'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+              </a></th>
+                <th><a href="#" ng-click="orderByField='title'; reverseSort = !reverseSort">
+              title <span ng-show="orderByField == 'title'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+              </a></th>
+                <th>
+                    <a href="#" ng-click="orderByField='body'; reverseSort = !reverseSort">
+              body <span ng-show="orderByField == 'body'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+              </a>
+                
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+            <tr ng-repeat="x in names|orderBy:orderByField:reverseSort">
+                <td>{{ x.userId }}</td>
+                <td>{{ x.id }}</td>
+                <td>{{ x.title }}</td>
+                <td>{{ x.body }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="application/javascript" src="public/js/script.js">
+
+</script>
+</body>
+</html>
